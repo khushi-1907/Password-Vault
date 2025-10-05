@@ -29,31 +29,31 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-r from-purple-600 via-pink-500 to-red-500">
-      <div className="bg-white dark:bg-gray-900 p-10 rounded-3xl shadow-2xl w-full max-w-md">
-        <h2 className="text-3xl font-bold text-gray-900 dark:text-white text-center mb-6">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-r from-purple-600 via-pink-500 to-red-500 px-4 sm:px-6 lg:px-8 py-8">
+      <div className="bg-white dark:bg-gray-900 p-6 sm:p-8 md:p-10 rounded-2xl sm:rounded-3xl shadow-2xl w-full max-w-xs sm:max-w-sm md:max-w-md">
+        <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white text-center mb-4 sm:mb-6">
           Welcome Back
         </h2>
 
         {flash && (
-          <div className="mb-4 text-green-600 font-medium text-center animate-pulse">
+          <div className="mb-3 sm:mb-4 text-green-600 font-medium text-center animate-pulse text-sm sm:text-base">
             {flash}
           </div>
         )}
         {err && (
-          <div className="mb-4 text-red-500 font-medium text-center animate-pulse">
+          <div className="mb-3 sm:mb-4 text-red-500 font-medium text-center animate-pulse text-sm sm:text-base">
             {err}
           </div>
         )}
 
-        <form onSubmit={submit} className="flex flex-col gap-5">
+        <form onSubmit={submit} className="flex flex-col gap-4 sm:gap-5">
           <input
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             placeholder="Email"
             required
-            className="px-4 py-3 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-pink-500 transition-all"
+            className="px-4 py-3 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-pink-500 transition-all text-sm sm:text-base"
           />
           <input
             type="password"
@@ -61,16 +61,16 @@ export default function LoginPage() {
             onChange={(e) => setPassword(e.target.value)}
             placeholder="Password"
             required
-            className="px-4 py-3 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-pink-500 transition-all"
+            className="px-4 py-3 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-pink-500 transition-all text-sm sm:text-base"
           />
           <button
             type="submit"
             disabled={loading}
-            className="bg-pink-500 hover:bg-pink-600 text-white font-semibold py-3 rounded-xl shadow-lg transition-all duration-300 transform hover:scale-105 flex justify-center items-center gap-2"
+            className="bg-pink-500 hover:bg-pink-600 text-white font-semibold py-3 rounded-xl shadow-lg transition-all duration-300 transform hover:scale-105 flex justify-center items-center gap-2 text-sm sm:text-base"
           >
             {loading && (
               <svg
-                className="animate-spin h-5 w-5 text-white"
+                className="animate-spin h-4 w-4 sm:h-5 sm:w-5 text-white"
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
                 viewBox="0 0 24 24"
@@ -94,7 +94,7 @@ export default function LoginPage() {
           </button>
         </form>
 
-        <p className="mt-6 text-center text-gray-500 dark:text-gray-400 text-sm">
+        <p className="mt-4 sm:mt-6 text-center text-gray-500 dark:text-gray-400 text-xs sm:text-sm">
           Don't have an account?{" "}
           <a
             href="/signup"
