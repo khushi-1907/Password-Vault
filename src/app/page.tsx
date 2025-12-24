@@ -1,11 +1,14 @@
 "use client";
 
 import { useState, useMemo } from 'react';
-import { Shield, Lock, Mail, Eye, EyeOff, AlertTriangle, Check, X } from 'lucide-react';
+import { Shield, Lock, Mail, Eye, EyeOff, Check, X } from 'lucide-react';
 import { useRouter } from 'next/navigation';
+import Link from 'next/link';
+import { useToast } from '@/context/ToastContext';
 
 export default function AuthPage() {
     const router = useRouter();
+    const { showToast } = useToast();
     const [isLogin, setIsLogin] = useState(true);
     const [showPassword, setShowPassword] = useState(false);
     const [email, setEmail] = useState('');
@@ -32,7 +35,7 @@ export default function AuthPage() {
         e.preventDefault();
 
         if (!isLogin && strength < 5) {
-            setMessage({ type: 'error', text: 'Please meet all password requirements.' });
+            showToast('Please meet all password requirements.', 'error');
             return;
         }
 
@@ -51,7 +54,7 @@ export default function AuthPage() {
             const data = await res.json();
 
             if (res.ok) {
-                setMessage({ type: 'success', text: isLogin ? 'Logged in successfully!' : 'Account created! You can now login.' });
+                showToast(isLogin ? 'Logged in successfully!' : 'Account created! You can now login.', 'success');
                 if (isLogin) {
                     localStorage.setItem('token', data.token);
                     sessionStorage.setItem('vaultKey', password);
@@ -61,10 +64,10 @@ export default function AuthPage() {
                     setPassword('');
                 }
             } else {
-                setMessage({ type: 'error', text: data.error || 'Something went wrong' });
+                showToast(data.error || 'Something went wrong', 'error');
             }
         } catch (err) {
-            setMessage({ type: 'error', text: 'Network error' });
+            showToast('Network error', 'error');
         } finally {
             setLoading(false);
         }
@@ -115,14 +118,14 @@ export default function AuthPage() {
                         <h1 className="text-2xl md:text-3xl font-bold mb-2">
                             {isLogin ? 'Welcome back' : 'Create Account'}
                         </h1>
-                        <p className="text-gray-400 text-center text-sm md:text-base mb-8 max-w-[320px] md:max-w-none">
+                        <p className="text-gray-400 text-center text-sm md:text-base mb-6 md:mb-8 max-w-[320px] md:max-w-none">
                             {isLogin
                                 ? 'Enter your master password to decrypt your vault.'
                                 : 'Choose a strong master password for your vault.'}
                         </p>
 
                         {message.text && (
-                            <div className={`w-full p-3 rounded-lg mb-6 text-sm ${message.type === 'success' ? 'bg-green-500/10 text-green-400 border border-green-500/20' : 'bg-red-500/10 text-red-400 border border-red-500/20'}`}>
+                            <div className={`w-full p-3 md:p-4 rounded-lg mb-4 md:mb-6 text-xs md:text-sm leading-relaxed ${message.type === 'success' ? 'bg-green-500/10 text-green-400 border border-green-500/20' : 'bg-red-500/10 text-red-400 border border-red-500/20'}`}>
                                 {message.text}
                             </div>
                         )}
@@ -151,9 +154,9 @@ export default function AuthPage() {
                                         Master Password
                                     </label>
                                     {isLogin && (
-                                        <button type="button" className="text-xs font-semibold text-[#2563eb] hover:underline">
+                                        <Link href="/forgot-password" className="text-xs font-semibold text-[#2563eb] hover:underline">
                                             Forgot Password?
-                                        </button>
+                                        </Link>
                                     )}
                                 </div>
                                 <div className="relative">
@@ -231,13 +234,6 @@ export default function AuthPage() {
                             {isLogin ? 'Create New Account' : 'Existing User Login'}
                         </button>
 
-                        {/* Warning Box */}
-                        <div className="mt-6 md:mt-8 p-3 md:p-4 bg-orange-500/5 border border-orange-500/20 rounded-xl flex gap-3">
-                            <AlertTriangle className="w-5 h-5 text-orange-500 shrink-0 mt-0.5" />
-                            <p className="text-[12px] md:text-[13px] text-orange-200/80 leading-relaxed">
-                                <span className="font-bold text-orange-400">Client-side Encryption:</span> We never see your password. If you lose your master password, your data cannot be recovered.
-                            </p>
-                        </div>
                     </div>
                 </div>
             </main>

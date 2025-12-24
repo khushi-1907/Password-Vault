@@ -13,9 +13,20 @@ const UserSchema = new Schema({
         required: [true, 'Password is required'],
         minlength: [6, 'Password must be at least 6 characters'],
     },
+    resetPasswordToken: {
+        type: String,
+        default: null,
+    },
+    resetPasswordExpires: {
+        type: Date,
+        default: null,
+    },
 }, {
     timestamps: true,
     collection: 'users',
 });
+
+// Index for efficient token lookup
+UserSchema.index({ resetPasswordToken: 1 });
 
 export default mongoose.models.User || mongoose.model('User', UserSchema);

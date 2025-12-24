@@ -94,30 +94,30 @@ export default function SettingsPage() {
     };
 
     return (
-        <div className="space-y-6">
+        <div className="space-y-4 md:space-y-6">
             <div>
-                <h1 className="text-3xl font-bold flex items-center gap-3">
-                    <Settings className="w-8 h-8 text-blue-500" />
+                <h1 className="text-2xl md:text-3xl font-bold flex items-center gap-2 md:gap-3">
+                    <Settings className="w-7 h-7 md:w-8 md:h-8 text-blue-500" />
                     Settings
                 </h1>
-                <p className="text-gray-400 mt-2">Manage your vault data and preferences</p>
+                <p className="text-sm md:text-base text-gray-400 mt-1 md:mt-2">Manage your vault data and preferences</p>
             </div>
 
             {/* Import/Export Section */}
-            <div className="bg-[#141b26] border border-[#2d3748] rounded-xl p-6 space-y-6">
+            <div className="bg-[#141b26] border border-[#2d3748] rounded-xl p-4 md:p-6 space-y-4 md:space-y-6">
                 <div>
-                    <h3 className="text-lg font-bold mb-4">Data Management</h3>
+                    <h3 className="text-base md:text-lg font-bold mb-3 md:mb-4">Data Management</h3>
 
-                    <div className="space-y-4">
+                    <div className="space-y-3 md:space-y-4">
                         {/* Export */}
-                        <div className="flex items-start gap-4 p-4 bg-[#1b2431] rounded-xl border border-[#2d3748]">
-                            <Download className="w-6 h-6 text-blue-500 mt-1" />
-                            <div className="flex-1">
-                                <h4 className="font-semibold mb-1">Export Vault</h4>
-                                <p className="text-sm text-gray-400 mb-3">Download all your passwords as a CSV file (unencrypted)</p>
+                        <div className="flex flex-col sm:flex-row sm:items-start gap-3 md:gap-4 p-3 md:p-4 bg-[#1b2431] rounded-xl border border-[#2d3748]">
+                            <Download className="w-5 h-5 md:w-6 md:h-6 text-blue-500 flex-shrink-0 mt-0.5" />
+                            <div className="flex-1 min-w-0">
+                                <h4 className="font-semibold text-sm md:text-base mb-1">Export Vault</h4>
+                                <p className="text-xs md:text-sm text-gray-400 mb-2 md:mb-3">Download all your passwords as a CSV file (unencrypted)</p>
                                 <button
                                     onClick={handleExport}
-                                    className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg font-semibold text-sm transition-all"
+                                    className="w-full sm:w-auto bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg font-semibold text-xs md:text-sm transition-all"
                                 >
                                     Export to CSV
                                 </button>
@@ -125,12 +125,12 @@ export default function SettingsPage() {
                         </div>
 
                         {/* Import */}
-                        <div className="flex items-start gap-4 p-4 bg-[#1b2431] rounded-xl border border-[#2d3748]">
-                            <Upload className="w-6 h-6 text-green-500 mt-1" />
-                            <div className="flex-1">
-                                <h4 className="font-semibold mb-1">Import Passwords</h4>
-                                <p className="text-sm text-gray-400 mb-3">Import from Chrome, Bitwarden, or generic CSV format</p>
-                                <label className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg font-semibold text-sm transition-all cursor-pointer inline-block">
+                        <div className="flex flex-col sm:flex-row sm:items-start gap-3 md:gap-4 p-3 md:p-4 bg-[#1b2431] rounded-xl border border-[#2d3748]">
+                            <Upload className="w-5 h-5 md:w-6 md:h-6 text-green-500 flex-shrink-0 mt-0.5" />
+                            <div className="flex-1 min-w-0">
+                                <h4 className="font-semibold text-sm md:text-base mb-1">Import Passwords</h4>
+                                <p className="text-xs md:text-sm text-gray-400 mb-2 md:mb-3">Import from Chrome, Bitwarden, or generic CSV format</p>
+                                <label className="w-full sm:w-auto bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg font-semibold text-xs md:text-sm transition-all cursor-pointer inline-block text-center">
                                     {importing ? 'Importing...' : 'Choose CSV File'}
                                     <input
                                         type="file"
@@ -146,9 +146,9 @@ export default function SettingsPage() {
                 </div>
 
                 {/* Warning */}
-                <div className="flex items-start gap-3 p-4 bg-orange-500/10 border border-orange-500/30 rounded-xl">
-                    <AlertCircle className="w-5 h-5 text-orange-500 mt-0.5" />
-                    <div className="text-sm">
+                <div className="flex flex-col sm:flex-row gap-2 md:gap-3 p-3 md:p-4 bg-orange-500/10 border border-orange-500/30 rounded-xl">
+                    <AlertCircle className="w-5 h-5 text-orange-500 flex-shrink-0 mt-0.5" />
+                    <div className="text-xs md:text-sm">
                         <p className="font-semibold text-orange-500 mb-1">Security Notice</p>
                         <p className="text-gray-400">Exported CSV files contain your passwords in plaintext. Store them securely and delete after use.</p>
                     </div>
@@ -156,9 +156,9 @@ export default function SettingsPage() {
             </div>
 
             {/* About Section */}
-            <div className="bg-[#141b26] border border-[#2d3748] rounded-xl p-6">
-                <h3 className="text-lg font-bold mb-4">About VaultApp</h3>
-                <div className="space-y-2 text-sm text-gray-400">
+            <div className="bg-[#141b26] border border-[#2d3748] rounded-xl p-4 md:p-6">
+                <h3 className="text-base md:text-lg font-bold mb-3 md:mb-4">About VaultApp</h3>
+                <div className="space-y-2 text-xs md:text-sm text-gray-400">
                     <p>Version 1.0.0</p>
                     <p>End-to-end encrypted password manager</p>
                     <p className="pt-2 text-xs">All encryption happens on your device. Your master password never leaves your browser.</p>

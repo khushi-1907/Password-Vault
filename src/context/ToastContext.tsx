@@ -49,22 +49,22 @@ export function ToastProvider({ children }: { children: ReactNode }) {
     return (
         <ToastContext.Provider value={{ showToast }}>
             {children}
-            {/* Toast Container */}
-            <div className="fixed bottom-6 right-6 z-[9999] flex flex-col gap-3 max-w-md w-full sm:w-auto">
+            {/* Toast Container - Responsive */}
+            <div className="fixed bottom-3 right-3 sm:bottom-4 sm:right-4 md:bottom-6 md:right-6 z-[9999] flex flex-col gap-2 sm:gap-3 max-w-sm sm:max-w-md w-[calc(100%-1.5rem)] sm:w-auto px-3 sm:px-0">
                 {toasts.map(toast => {
                     const Icon = icons[toast.type];
                     return (
                         <div
                             key={toast.id}
-                            className={`flex items-center gap-3 p-4 rounded-xl border backdrop-blur-md shadow-2xl animate-in slide-in-from-right-10 fade-in duration-300 ${colors[toast.type]}`}
+                            className={`flex items-start sm:items-center gap-2 sm:gap-3 p-3 sm:p-4 rounded-lg sm:rounded-xl border backdrop-blur-md shadow-lg sm:shadow-2xl animate-in slide-in-from-right-5 sm:slide-in-from-right-10 fade-in duration-300 text-xs sm:text-sm ${colors[toast.type]}`}
                         >
-                            <Icon className="w-5 h-5 shrink-0" />
-                            <p className="text-sm font-semibold">{toast.message}</p>
+                            <Icon className="w-4 h-4 sm:w-5 sm:h-5 shrink-0 mt-0.5 sm:mt-0" />
+                            <p className="font-semibold flex-1 break-words">{toast.message}</p>
                             <button
                                 onClick={() => removeToast(toast.id)}
-                                className="ml-auto p-1 hover:bg-white/10 rounded-lg transition-colors"
+                                className="p-0.5 sm:p-1 hover:bg-white/10 rounded-lg transition-colors shrink-0"
                             >
-                                <X className="w-4 h-4" />
+                                <X className="w-3 h-3 sm:w-4 sm:h-4" />
                             </button>
                         </div>
                     );

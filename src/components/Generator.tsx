@@ -59,26 +59,26 @@ export default function Generator() {
     const strengthColor = length < 8 ? 'bg-red-500' : length < 12 ? 'bg-orange-500' : length < 16 ? 'bg-green-500' : 'bg-blue-500';
 
     return (
-        <div className="bg-[#141b26] border border-[#2d3748] rounded-2xl p-6 md:p-8 w-full shadow-xl">
-            <div className="flex items-center gap-3 mb-8">
-                <RefreshCw className="w-5 h-5 text-[#2563eb]" />
-                <h2 className="text-xl font-bold">Generator</h2>
+        <div className="bg-[#141b26] border border-[#2d3748] rounded-2xl p-4 md:p-6 lg:p-8 w-full shadow-xl">
+            <div className="flex items-center gap-2 md:gap-3 mb-4 md:mb-6 lg:mb-8">
+                <RefreshCw className="w-4 h-4 md:w-5 md:h-5 text-[#2563eb]" />
+                <h2 className="text-lg md:text-xl font-bold">Generator</h2>
             </div>
 
-            <div className="relative mb-6">
-                <div className="bg-[#1b2431] border border-[#2d3748] rounded-xl p-5 text-center text-xl md:text-2xl font-mono tracking-wider break-all pr-14 min-h-[72px] flex items-center justify-center">
+            <div className="relative mb-4 md:mb-6">
+                <div className="bg-[#1b2431] border border-[#2d3748] rounded-xl p-3 md:p-5 text-center text-base md:text-xl lg:text-2xl font-mono tracking-wider break-all pr-12 md:pr-14 min-h-[60px] md:min-h-[72px] flex items-center justify-center">
                     {password}
                 </div>
                 <button
                     onClick={copyToClipboard}
-                    className="absolute right-3 top-1/2 -translate-y-1/2 p-2 hover:bg-[#2d3748] rounded-lg transition-colors text-gray-400 hover:text-white"
+                    className="absolute right-2 md:right-3 top-1/2 -translate-y-1/2 p-1.5 md:p-2 hover:bg-[#2d3748] rounded-lg transition-colors text-gray-400 hover:text-white"
                 >
-                    {copied ? <Check className="w-5 h-5 text-green-500" /> : <Copy className="w-5 h-5" />}
+                    {copied ? <Check className="w-4 h-4 md:w-5 md:h-5 text-green-500" /> : <Copy className="w-4 h-4 md:w-5 md:h-5" />}
                 </button>
             </div>
 
-            <div className="space-y-6">
-                <div className="flex justify-between items-center text-xs font-bold uppercase tracking-wider text-gray-400">
+            <div className="space-y-4 md:space-y-6">
+                <div className="flex justify-between items-center text-xs font-bold uppercase tracking-widest text-gray-400">
                     <span>Strength</span>
                     <span className={strength === 'Weak' ? 'text-red-500' : strength === 'Fair' ? 'text-orange-500' : 'text-green-500'}>
                         {strength}
@@ -92,8 +92,8 @@ export default function Generator() {
                 </div>
 
                 <div className="flex justify-between items-center">
-                    <span className="text-sm font-semibold text-gray-400">Length</span>
-                    <span className="bg-[#1b2431] px-3 py-1 rounded-md text-sm font-bold border border-[#2d3748]">{length}</span>
+                    <span className="text-xs md:text-sm font-semibold text-gray-400">Length</span>
+                    <span className="bg-[#1b2431] px-2 md:px-3 py-1 rounded-md text-xs md:text-sm font-bold border border-[#2d3748]">{length}</span>
                 </div>
                 <input
                     type="range"
@@ -104,28 +104,28 @@ export default function Generator() {
                     className="w-full h-1.5 bg-[#1b2431] rounded-lg appearance-none cursor-pointer accent-[#2563eb]"
                 />
 
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-2 gap-2 md:gap-4">
                     {Object.entries(options).map(([key, value]) => (
-                        <label key={key} className="flex items-center gap-3 cursor-pointer group">
+                        <label key={key} className="flex items-center gap-2 md:gap-3 cursor-pointer group">
                             <div className="relative flex items-center">
                                 <input
                                     type="checkbox"
                                     checked={value}
                                     onChange={() => setOptions(prev => ({ ...prev, [key]: !prev[key as keyof GeneratorOptions] }))}
-                                    className="peer appearance-none w-5 h-5 bg-[#1b2431] border border-[#2d3748] rounded-md checked:bg-[#2563eb] checked:border-[#2563eb] transition-all"
+                                    className="peer appearance-none w-4 h-4 md:w-5 md:h-5 bg-[#1b2431] border border-[#2d3748] rounded-md checked:bg-[#2563eb] checked:border-[#2563eb] transition-all"
                                 />
-                                <Check className="absolute w-3.5 h-3.5 text-white opacity-0 peer-checked:opacity-100 left-0.5 pointer-events-none transition-opacity" />
+                                <Check className="absolute w-3 h-3 md:w-3.5 md:h-3.5 text-white opacity-0 peer-checked:opacity-100 left-0.5 pointer-events-none transition-opacity" />
                             </div>
-                            <span className="text-sm font-medium text-gray-300 capitalize group-hover:text-white transition-colors">{key}</span>
+                            <span className="text-xs md:text-sm font-medium text-gray-300 capitalize group-hover:text-white transition-colors">{key}</span>
                         </label>
                     ))}
                 </div>
 
                 <button
                     onClick={generatePassword}
-                    className="w-full bg-[#2563eb] hover:bg-[#1d4ed8] text-white font-bold py-4 rounded-xl shadow-lg shadow-blue-900/20 transition-all flex items-center justify-center gap-2"
+                    className="w-full bg-[#2563eb] hover:bg-[#1d4ed8] text-white font-bold py-2.5 md:py-3 lg:py-4 rounded-xl shadow-lg shadow-blue-900/20 transition-all flex items-center justify-center gap-2 text-sm md:text-base"
                 >
-                    <RefreshCw className="w-5 h-5" />
+                    <RefreshCw className="w-4 h-4 md:w-5 md:h-5" />
                     Generate New Password
                 </button>
             </div>
